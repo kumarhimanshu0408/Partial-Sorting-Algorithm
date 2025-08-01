@@ -36,9 +36,7 @@ For example, to extract the top 512 from 1024:
 
 ```
 
-BM2 → BM4 → BM8 → BM16 → BM32 → BM64 → BM128 → BM256 → BM512
-↓        ↓          ↓        ↓         ↓        ↓
-MAX512
+BM2 → BM4 → BM8 → BM16 → BM32 → BM64 → BM128 → BM256 → BM512 → MAX512
 
 ```
 

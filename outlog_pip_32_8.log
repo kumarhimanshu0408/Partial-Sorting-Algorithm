@@ -1,0 +1,1382 @@
+Initializing gui preferences from file  /home/user/.synopsys_dc_gui/preferences.tcl
+# Set the library path
+set PDK_PATH     "/home/SCL_PDK/SCLPDK_V3.0_KIT/scl180"  
+/home/SCL_PDK/SCLPDK_V3.0_KIT/scl180
+# Name of the top-level design
+set DESIGN_NAME  "partial_sorter_general"
+partial_sorter_general
+# Setting up of Synopsys environment
+source -echo -verbose ./rm_setup/dc_setup.tcl
+source -echo -verbose ./rm_setup/common_setup.tcl
+puts "RM-Info: Running script [info script]\n"
+RM-Info: Running script /home/user/Documents/OELP_pjts/sorter_pipelined_32_8/sorter_32_8/DC/rm_setup/common_setup.tcl
+
+##########################################################################################
+# Variables common to all reference methodology scripts
+# Script: common_setup.tcl
+# Version: N-2017.09-SP4 (April 23, 2018)
+# Copyright (C) 2007-2017 Synopsys, Inc. All rights reserved.
+##########################################################################################
+#set DESIGN_NAME                   "fibo"  ;#  The name of the top-level design
+#set PDK_PATH                   "/home/SCL_PDK/SCLPDK_V3.0_KIT/scl180" ; # to set the PDK path for the design
+set DESIGN_REF_DATA_PATH          ""  ;#  Absolute path prefix variable for library/design data.
+#  Use this variable to prefix the common absolute path  
+#  to the common variables defined below.
+#  Absolute paths are mandatory for hierarchical 
+#  reference methodology flow.
+##########################################################################################
+# Hierarchical Flow Design Variables
+##########################################################################################
+#set HIERARCHICAL_DESIGNS           "adder rca register_r0 register_r1" ;# List of hierarchical block design names "DesignA DesignB" ...
+set HIERARCHICAL_CELLS             "" ;# List of hierarchical block cell instance names "u_DesignA u_DesignB" ...
+##########################################################################################
+# Library Setup Variables
+##########################################################################################
+# For the following variables, use a blank space to separate multiple entries.
+# Example: set TARGET_LIBRARY_FILES "lib1.db lib2.db lib3.db"
+set ADDITIONAL_SEARCH_PATH        " $PDK_PATH/digital_pnr_kit/snps/non_rh/4M1L/"  ;#  Additional search path to be added to the default search path
+ /home/SCL_PDK/SCLPDK_V3.0_KIT/scl180/digital_pnr_kit/snps/non_rh/4M1L/
+set TARGET_LIBRARY_FILES          "$PDK_PATH/stdcell/fs120/4M1IL/liberty/lib_flow_ss/tsl18fs120_scl_ss.db $PDK_PATH/stdcell/fs120/4M1IL/liberty/lib_flow_ff/tsl18fs120_scl_ff.db"  ;#  Target technology logical libraries
+/home/SCL_PDK/SCLPDK_V3.0_KIT/scl180/stdcell/fs120/4M1IL/liberty/lib_flow_ss/tsl18fs120_scl_ss.db /home/SCL_PDK/SCLPDK_V3.0_KIT/scl180/stdcell/fs120/4M1IL/liberty/lib_flow_ff/tsl18fs120_scl_ff.db
+set ADDITIONAL_LINK_LIB_FILES     ""  ;#  Extra link logical libraries not included in TARGET_LIBRARY_FILES
+set MIN_LIBRARY_FILES             ""  ;#  List of max min library pairs "max1 min1 max2 min2 max3 min3"...
+set MW_REFERENCE_LIB_DIRS         ""  ;#  Milkyway reference libraries (include IC Compiler ILMs here)
+set MW_REFERENCE_CONTROL_FILE     ""  ;#  Reference Control file to define the Milkyway reference libs
+set TECH_FILE                     "$PDK_PATH/digital_pnr_kit/snps/non_rh/4M1L/SCL_4LM.tf"  ;#  Milkyway technology file
+/home/SCL_PDK/SCLPDK_V3.0_KIT/scl180/digital_pnr_kit/snps/non_rh/4M1L/SCL_4LM.tf
+set MAP_FILE                      "SCL_TLUPLUS_4M1L.map"  ;#  Mapping file for TLUplus
+SCL_TLUPLUS_4M1L.map
+##set TLUPLUS_MAX_FILE              "saed32nm_1p9m_Cmax.tluplus"  ;#  Max TLUplus file
+##set TLUPLUS_MIN_FILE              "saed32nm_1p9m_Cmin.tluplus"  ;#  Min TLUplus file
+set MIN_ROUTING_LAYER            "M1"   ;# Min routing layer
+M1
+set MAX_ROUTING_LAYER            "M4"   ;# Max routing layer
+M4
+set LIBRARY_DONT_USE_FILE        ""   ;# Tcl file with library modifications for dont_use
+set LIBRARY_DONT_USE_PRE_COMPILE_LIST ""; #Tcl file for customized don't use list before first compile
+set LIBRARY_DONT_USE_PRE_INCR_COMPILE_LIST "";# Tcl file with library modifications for dont_use before incr compile
+##########################################################################################
+# Multivoltage Common Variables
+#
+# Define the following multivoltage common variables for the reference methodology scripts 
+# for multivoltage flows. 
+# Use as few or as many of the following definitions as needed by your design.
+##########################################################################################
+set PD1                          ""           ;# Name of power domain/voltage area  1
+set VA1_COORDINATES              {}           ;# Coordinates for voltage area 1
+set MW_POWER_NET1                "VDD1"       ;# Power net for voltage area 1
+VDD1
+set PD2                          ""           ;# Name of power domain/voltage area  2
+set VA2_COORDINATES              {}           ;# Coordinates for voltage area 2
+set MW_POWER_NET2                "VDD2"       ;# Power net for voltage area 2
+VDD2
+set PD3                          ""           ;# Name of power domain/voltage area  3
+set VA3_COORDINATES              {}           ;# Coordinates for voltage area 3
+set MW_POWER_NET3                "VDD3"       ;# Power net for voltage area 3
+VDD3
+set PD4                          ""           ;# Name of power domain/voltage area  4
+set VA4_COORDINATES              {}           ;# Coordinates for voltage area 4
+set MW_POWER_NET4                "VDD4"       ;# Power net for voltage area 4
+VDD4
+puts "RM-Info: Completed script [info script]\n"
+RM-Info: Completed script /home/user/Documents/OELP_pjts/sorter_pipelined_32_8/sorter_32_8/DC/rm_setup/common_setup.tcl
+
+source -echo -verbose ./rm_setup/dc_setup_filenames.tcl
+puts "RM-Info: Running script [info script]\n"
+RM-Info: Running script /home/user/Documents/OELP_pjts/sorter_pipelined_32_8/sorter_32_8/DC/rm_setup/dc_setup_filenames.tcl
+
+#################################################################################
+# Design Compiler Reference Methodology Filenames Setup
+# Script: dc_setup_filenames.tcl
+# Version: N-2017.09-SP4 (April 23, 2018)
+# Copyright (C) 2010-2017 Synopsys, Inc. All rights reserved.
+#################################################################################
+#################################################################################
+# Use this file to customize the filenames used in the Design Compiler
+# Reference Methodology scripts.  This file is designed to be sourced at the
+# beginning of the dc_setup.tcl file after sourcing the common_setup.tcl file.
+#
+# Note that the variables presented in this file depend on the type of flow
+# selected when generating the reference methodology files.
+#
+# Example.
+#    If you set DFT flow as FALSE, you will not see DFT related filename
+#    variables in this file.
+#
+# When reusing this file for different flows or newer release, ensure that
+# all the required filename variables are defined.  One way to do this is
+# to source the default dc_setup_filenames.tcl file and then override the
+# default settings as needed for your design.
+#
+# The default values are backwards compatible with older
+# Design Compiler Reference Methodology releases.
+#
+# Note: Care should be taken when modifying the names of output files
+#       that are used in other scripts or tools.
+#################################################################################
+#################################################################################
+# General Flow Files
+#################################################################################
+##########################
+# Milkyway Library Names #
+##########################
+set DCRM_MW_LIBRARY_NAME                                ${DESIGN_NAME}_LIB
+partial_sorter_general_LIB
+set DCRM_FINAL_MW_CEL_NAME                              ${DESIGN_NAME}_DCT
+partial_sorter_general_DCT
+#####################
+# MCMM File Names   #
+#####################
+set DCRM_MCMM_SCENARIOS_SETUP_FILE                      ${DESIGN_NAME}.mcmm.scenarios.tcl
+partial_sorter_general.mcmm.scenarios.tcl
+set DCRM_MCMM_SCENARIOS_REPORT                          ${DESIGN_NAME}.mcmm.scenarios.rpt
+partial_sorter_general.mcmm.scenarios.rpt
+# The following procedure is used to control the naming of the scenario-specific
+# MCMM input and output files. 
+# By default the naming convention inserts the scenario name before the file 
+# extension.
+# Modify this procedure if you want to use different name convention for the 
+# scenario-specific file naming.
+proc dcrm_mcmm_filename { filename scenario } {
+  return [file rootname $filename].$scenario[file extension $filename]
+}
+###############
+# Input Files #
+###############
+set DCRM_SDC_INPUT_FILE                                 ${DESIGN_NAME}.sdc
+partial_sorter_general.sdc
+set DCRM_CONSTRAINTS_INPUT_FILE                         ${DESIGN_NAME}.constraints.tcl
+partial_sorter_general.constraints.tcl
+###########
+# Reports #
+###########
+set DCRM_CHECK_LIBRARY_REPORT                           ${DESIGN_NAME}.check_library.rpt
+partial_sorter_general.check_library.rpt
+set DCRM_CONSISTENCY_CHECK_ENV_FILE                     ${DESIGN_NAME}.compile_ultra.env
+partial_sorter_general.compile_ultra.env
+set DCRM_CHECK_DESIGN_REPORT                            ${DESIGN_NAME}.check_design.rpt
+partial_sorter_general.check_design.rpt
+set DCRM_ANALYZE_DATAPATH_EXTRACTION_REPORT             ${DESIGN_NAME}.analyze_datapath_extraction.rpt
+partial_sorter_general.analyze_datapath_extraction.rpt
+set DCRM_FINAL_QOR_REPORT                               ${DESIGN_NAME}.mapped.qor.rpt
+partial_sorter_general.mapped.qor.rpt
+set DCRM_FINAL_TIMING_REPORT                            ${DESIGN_NAME}.mapped.timing.rpt
+partial_sorter_general.mapped.timing.rpt
+set DCRM_FINAL_AREA_REPORT                              ${DESIGN_NAME}.mapped.area.rpt
+partial_sorter_general.mapped.area.rpt
+set DCRM_FINAL_POWER_REPORT                             ${DESIGN_NAME}.mapped.power.rpt
+partial_sorter_general.mapped.power.rpt
+set DCRM_FINAL_CLOCK_GATING_REPORT                      ${DESIGN_NAME}.mapped.clock_gating.rpt
+partial_sorter_general.mapped.clock_gating.rpt
+set DCRM_FINAL_SELF_GATING_REPORT                       ${DESIGN_NAME}.mapped.self_gating.rpt
+partial_sorter_general.mapped.self_gating.rpt
+set DCRM_THRESHOLD_VOLTAGE_GROUP_REPORT                 ${DESIGN_NAME}.mapped.threshold.voltage.group.rpt
+partial_sorter_general.mapped.threshold.voltage.group.rpt
+set DCRM_INSTANTIATE_CLOCK_GATES_REPORT                 ${DESIGN_NAME}.instatiate_clock_gates.rpt
+partial_sorter_general.instatiate_clock_gates.rpt
+set DCRM_FINAL_DESIGNWARE_AREA_REPORT                   ${DESIGN_NAME}.mapped.designware_area.rpt
+partial_sorter_general.mapped.designware_area.rpt
+set DCRM_FINAL_RESOURCES_REPORT                         ${DESIGN_NAME}.mapped.final_resources.rpt
+partial_sorter_general.mapped.final_resources.rpt
+set DCRM_MULTIBIT_CREATE_REGISTER_BANK_FILE             ${DESIGN_NAME}.register_bank.rpt
+partial_sorter_general.register_bank.rpt
+set DCRM_MULTIBIT_CREATE_REGISTER_BANK_REPORT           ${DESIGN_NAME}.register_bank_report_file.rpt 
+partial_sorter_general.register_bank_report_file.rpt
+set DCRM_MULTIBIT_COMPONENTS_REPORT                     ${DESIGN_NAME}.multibit.components.rpt
+partial_sorter_general.multibit.components.rpt
+set DCRM_MULTIBIT_BANKING_REPORT                        ${DESIGN_NAME}.multibit.banking.rpt
+partial_sorter_general.multibit.banking.rpt
+set DCRM_FINAL_INTERFACE_TIMING_REPORT                  ${DESIGN_NAME}.mapped.interface_timing.rpt
+partial_sorter_general.mapped.interface_timing.rpt
+################
+# Output Files #
+################
+set DCRM_AUTOREAD_RTL_SCRIPT                            ${DESIGN_NAME}.autoread_rtl.tcl
+partial_sorter_general.autoread_rtl.tcl
+set DCRM_ELABORATED_DESIGN_DDC_OUTPUT_FILE              ${DESIGN_NAME}.elab.ddc
+partial_sorter_general.elab.ddc
+set DCRM_COMPILE_ULTRA_DDC_OUTPUT_FILE                  ${DESIGN_NAME}.compile_ultra.ddc
+partial_sorter_general.compile_ultra.ddc
+set DCRM_FINAL_DDC_OUTPUT_FILE                          ${DESIGN_NAME}.mapped.ddc
+partial_sorter_general.mapped.ddc
+set DCRM_FINAL_PG_VERILOG_OUTPUT_FILE                   ${DESIGN_NAME}.mapped.pg.v
+partial_sorter_general.mapped.pg.v
+set DCRM_FINAL_VERILOG_OUTPUT_FILE                      ${DESIGN_NAME}.mapped.v
+partial_sorter_general.mapped.v
+set DCRM_FINAL_SDC_OUTPUT_FILE                          ${DESIGN_NAME}.mapped.sdc
+partial_sorter_general.mapped.sdc
+set DCRM_FINAL_SDF_OUTPUT_FILE                          ${DESIGN_NAME}.mapped.sdf
+partial_sorter_general.mapped.sdf
+set DCRM_FINAL_DESIGN_ICC2                              ICC2_files
+ICC2_files
+# The following procedures are used to control the naming of the updated blocks
+# after transparent interface optimization.
+# Modify this procedure if you want to use different names.
+proc dcrm_compile_ultra_tio_filename { design } {
+  return $design.compile_ultra.tio.ddc
+}
+proc dcrm_mapped_tio_filename { design } {
+  return $design.mapped.tio.ddc
+}
+#################################################################################
+# DCT Flow Files
+#################################################################################
+###################
+# DCT Input Files #
+###################
+set DCRM_DCT_DEF_INPUT_FILE                             ${DESIGN_NAME}.def
+partial_sorter_general.def
+set DCRM_DCT_FLOORPLAN_INPUT_FILE                       ${DESIGN_NAME}.fp
+partial_sorter_general.fp
+set DCRM_DCT_PHYSICAL_CONSTRAINTS_INPUT_FILE            ${DESIGN_NAME}.physical_constraints.tcl
+partial_sorter_general.physical_constraints.tcl
+###############
+# DCT Reports #
+###############
+set DCRM_DCT_PHYSICAL_CONSTRAINTS_REPORT                ${DESIGN_NAME}.physical_constraints.rpt
+partial_sorter_general.physical_constraints.rpt
+set DCRM_DCT_FINAL_CONGESTION_REPORT                    ${DESIGN_NAME}.mapped.congestion.rpt
+partial_sorter_general.mapped.congestion.rpt
+set DCRM_DCT_FINAL_CONGESTION_MAP_OUTPUT_FILE           ${DESIGN_NAME}.mapped.congestion_map.png
+partial_sorter_general.mapped.congestion_map.png
+set DCRM_DCT_FINAL_CONGESTION_MAP_WINDOW_OUTPUT_FILE    ${DESIGN_NAME}.mapped.congestion_map_window.png
+partial_sorter_general.mapped.congestion_map_window.png
+set DCRM_ANALYZE_RTL_CONGESTION_REPORT_FILE             ${DESIGN_NAME}.analyze_rtl_congetion.rpt
+partial_sorter_general.analyze_rtl_congetion.rpt
+set DCRM_DCT_FINAL_QOR_SNAPSHOT_FOLDER                  ${DESIGN_NAME}.qor_snapshot
+partial_sorter_general.qor_snapshot
+set DCRM_DCT_FINAL_QOR_SNAPSHOT_REPORT                  ${DESIGN_NAME}.qor_snapshot.rpt
+partial_sorter_general.qor_snapshot.rpt
+####################
+# DCT Output Files #
+####################
+set DCRM_DCT_FLOORPLAN_OUTPUT_FILE                      ${DESIGN_NAME}.initial.fp
+partial_sorter_general.initial.fp
+set DCRM_DCT_FINAL_FLOORPLAN_OUTPUT_FILE                ${DESIGN_NAME}.mapped.fp
+partial_sorter_general.mapped.fp
+set DCRM_DCT_FINAL_SPEF_OUTPUT_FILE                     ${DESIGN_NAME}.mapped.spef
+partial_sorter_general.mapped.spef
+set DCRM_DCT_FINAL_SDF_OUTPUT_FILE                      ${DESIGN_NAME}.mapped.sdf
+partial_sorter_general.mapped.sdf
+# Uncomment the DCRM_DCT_SPG_PLACEMENT_OUTPUT_FILE variable setting to save the
+# standard cell placement for physical guidance flow when ASCII hand-off to IC Compiler 
+# is used.  
+# set DCRM_DCT_SPG_PLACEMENT_OUTPUT_FILE                  ${DESIGN_NAME}.mapped.std_cell.def
+#################################################################################
+# DFT Flow Files
+#################################################################################
+###################
+# DFT Input Files #
+###################
+set DCRM_DFT_SIGNAL_SETUP_INPUT_FILE                    ${DESIGN_NAME}.dft_signal_defs.tcl
+partial_sorter_general.dft_signal_defs.tcl
+set DCRM_DFT_AUTOFIX_CONFIG_INPUT_FILE                  ${DESIGN_NAME}.dft_autofix_config.tcl
+partial_sorter_general.dft_autofix_config.tcl
+###############
+# DFT Reports #
+###############
+set DCRM_DFT_DRC_CONFIGURED_VERBOSE_REPORT              ${DESIGN_NAME}.dft_drc_configured.rpt
+partial_sorter_general.dft_drc_configured.rpt
+set DCRM_DFT_SCAN_CONFIGURATION_REPORT                  ${DESIGN_NAME}.scan_config.rpt
+partial_sorter_general.scan_config.rpt
+set DCRM_DFT_COMPRESSION_CONFIGURATION_REPORT           ${DESIGN_NAME}.compression_config.rpt
+partial_sorter_general.compression_config.rpt
+set DCRM_DFT_PREVIEW_CONFIGURATION_REPORT               ${DESIGN_NAME}.report_dft_insertion_config.preview_dft.rpt
+partial_sorter_general.report_dft_insertion_config.preview_dft.rpt
+set DCRM_DFT_PREVIEW_DFT_SUMMARY_REPORT                 ${DESIGN_NAME}.preview_dft_summary.rpt
+partial_sorter_general.preview_dft_summary.rpt
+set DCRM_DFT_PREVIEW_DFT_ALL_REPORT                     ${DESIGN_NAME}.preview_dft.rpt
+partial_sorter_general.preview_dft.rpt
+set DCRM_DFT_FINAL_SCAN_PATH_REPORT                     ${DESIGN_NAME}.mapped.scanpath.rpt
+partial_sorter_general.mapped.scanpath.rpt
+set DCRM_DFT_DRC_FINAL_REPORT                           ${DESIGN_NAME}.mapped.dft_drc_inserted.rpt
+partial_sorter_general.mapped.dft_drc_inserted.rpt
+set DCRM_DFT_FINAL_SCAN_COMPR_SCAN_PATH_REPORT          ${DESIGN_NAME}.mapped.scanpath.scan_compression.rpt
+partial_sorter_general.mapped.scanpath.scan_compression.rpt
+set DCRM_DFT_DRC_FINAL_SCAN_COMPR_REPORT                ${DESIGN_NAME}.mapped.dft_drc_inserted.scan_compression.rpt
+partial_sorter_general.mapped.dft_drc_inserted.scan_compression.rpt
+set DCRM_DFT_FINAL_CHECK_SCAN_DEF_REPORT                ${DESIGN_NAME}.mapped.check_scan_def.rpt
+partial_sorter_general.mapped.check_scan_def.rpt
+set DCRM_DFT_FINAL_DFT_SIGNALS_REPORT                   ${DESIGN_NAME}.mapped.dft_signals.rpt
+partial_sorter_general.mapped.dft_signals.rpt
+####################
+# DFT Output Files #
+####################
+set DCRM_DFT_FINAL_SCANDEF_OUTPUT_FILE                  ${DESIGN_NAME}.mapped.scandef
+partial_sorter_general.mapped.scandef
+set DCRM_DFT_FINAL_EXPANDED_SCANDEF_OUTPUT_FILE         ${DESIGN_NAME}.mapped.expanded.scandef
+partial_sorter_general.mapped.expanded.scandef
+set DCRM_DFT_FINAL_CTL_OUTPUT_FILE                      ${DESIGN_NAME}.mapped.ctl
+partial_sorter_general.mapped.ctl
+set DCRM_DFT_FINAL_PROTOCOL_OUTPUT_FILE                 ${DESIGN_NAME}.mapped.scan.spf
+partial_sorter_general.mapped.scan.spf
+set DCRM_DFT_FINAL_SCAN_COMPR_PROTOCOL_OUTPUT_FILE      ${DESIGN_NAME}.mapped.scancompress.spf
+partial_sorter_general.mapped.scancompress.spf
+#################################################################################
+# MV Flow Files
+#################################################################################
+###################
+# MV Input Files  #
+###################
+set DCRM_MV_UPF_INPUT_FILE                              ${DESIGN_NAME}.upf
+partial_sorter_general.upf
+set DCRM_MV_SET_VOLTAGE_INPUT_FILE                      ${DESIGN_NAME}.set_voltage.tcl
+partial_sorter_general.set_voltage.tcl
+set DCRM_MV_DCT_VOLTAGE_AREA_INPUT_FILE                 ${DESIGN_NAME}.create_voltage_area.tcl
+partial_sorter_general.create_voltage_area.tcl
+##############
+# MV Reports #
+##############
+set DCRM_MV_DRC_FINAL_SUMMARY_REPORT                    ${DESIGN_NAME}.mv_drc.final_summary.rpt
+partial_sorter_general.mv_drc.final_summary.rpt
+set DCRM_MV_DRC_FINAL_VERBOSE_REPORT                    ${DESIGN_NAME}.mv_drc.final.rpt
+partial_sorter_general.mv_drc.final.rpt
+set DCRM_MV_FINAL_POWER_DOMAIN_REPORT                   ${DESIGN_NAME}.mapped.power_domain.rpt
+partial_sorter_general.mapped.power_domain.rpt
+set DCRM_MV_FINAL_POWER_SWITCH_REPORT                   ${DESIGN_NAME}.mapped.power_switch.rpt
+partial_sorter_general.mapped.power_switch.rpt
+set DCRM_MV_FINAL_SUPPLY_NET_REPORT                     ${DESIGN_NAME}.mapped.supply_net.rpt
+partial_sorter_general.mapped.supply_net.rpt
+set DCRM_MV_FINAL_PST_REPORT                            ${DESIGN_NAME}.mapped.pst.rpt
+partial_sorter_general.mapped.pst.rpt
+set DCRM_MV_FINAL_LEVEL_SHIFTER_REPORT                  ${DESIGN_NAME}.mapped.level_shifter.rpt
+partial_sorter_general.mapped.level_shifter.rpt
+set DCRM_MV_FINAL_ISOLATION_CELL_REPORT                 ${DESIGN_NAME}.mapped.isolation_cell.rpt
+partial_sorter_general.mapped.isolation_cell.rpt
+set DCRM_MV_FINAL_RETENTION_CELL_REPORT                 ${DESIGN_NAME}.mapped.retention_cell.rpt
+partial_sorter_general.mapped.retention_cell.rpt
+####################
+# MV Output Files  #
+####################
+set DCRM_MV_FINAL_UPF_OUTPUT_FILE                       ${DESIGN_NAME}.supplement.upf
+partial_sorter_general.supplement.upf
+set DCRM_MV_FINAL_LINK_LIBRARY_OUTPUT_FILE              ${DESIGN_NAME}.link_library.tcl
+partial_sorter_general.link_library.tcl
+#################################################################################
+# Formality Flow Files
+#################################################################################
+set DCRM_SVF_OUTPUT_FILE                                ${DESIGN_NAME}.mapped.svf
+partial_sorter_general.mapped.svf
+set FMRM_UNMATCHED_POINTS_REPORT                        ${DESIGN_NAME}.fmv_unmatched_points.rpt
+partial_sorter_general.fmv_unmatched_points.rpt
+set FMRM_FAILING_SESSION_NAME                           ${DESIGN_NAME}
+partial_sorter_general
+set FMRM_FAILING_POINTS_REPORT                          ${DESIGN_NAME}.fmv_failing_points.rpt
+partial_sorter_general.fmv_failing_points.rpt
+set FMRM_ABORTED_POINTS_REPORT                          ${DESIGN_NAME}.fmv_aborted_points.rpt
+partial_sorter_general.fmv_aborted_points.rpt
+set FMRM_ANALYZE_POINTS_REPORT                          ${DESIGN_NAME}.fmv_analyze_points.rpt
+partial_sorter_general.fmv_analyze_points.rpt
+puts "RM-Info: Completed script [info script]\n"
+RM-Info: Completed script /home/user/Documents/OELP_pjts/sorter_pipelined_32_8/sorter_32_8/DC/rm_setup/dc_setup_filenames.tcl
+
+puts "RM-Info: Running script [info script]\n"
+RM-Info: Running script /home/user/Documents/OELP_pjts/sorter_pipelined_32_8/sorter_32_8/DC/rm_setup/dc_setup.tcl
+
+#################################################################################
+# Design Compiler Reference Methodology Setup for Hierarchical MCMM Flow
+# Script: dc_setup.tcl
+# Version: N-2017.09-SP4 (April 23, 2018)
+# Copyright (C) 2007-2017 Synopsys, Inc. All rights reserved.
+#################################################################################
+##########################################################################################
+# Hierarchical Flow Blocks
+#
+# If you are performing a hierarchical flow, define the hierarchical designs here.
+# List the reference names of the hierarchical blocks.  Cell instance names will
+# be automatically derived from the design names provided.
+#
+# Note: These designs are expected to be unique. There should not be multiple
+#       instantiations of physical hierarchical blocks.
+#
+##########################################################################################
+# Each of the hierarchical designs specified in ${HIERARCHICAL_DESIGNS} in the common_setup.tcl file
+# should be added to only one of the lists below:
+set DDC_HIER_DESIGNS                    ""  ;# List of Design Compiler hierarchical design names (.ddc will be read)
+set DC_BLOCK_ABSTRACTION_DESIGNS        ""  ;# List of Design Compiler block abstraction hierarchical designs (.ddc will be read)
+# without transparent interface optimization
+set DC_BLOCK_ABSTRACTION_DESIGNS_TIO    ""  ;# List of Design Compiler block abstraction hierarchical designs
+# with transparent interface optimization
+set ICC_BLOCK_ABSTRACTION_DESIGNS       ""  ;# List of IC Compiler block abstraction hierarchical design names (Milkyway will be read)
+#################################################################################
+# Setup Variables
+#
+# Modify settings in this section to customize your Design Compiler Reference 
+# Methodology run.
+# Portions of dc_setup.tcl may be used by other tools so program name checks
+# are performed where necessary.
+#################################################################################
+if {$synopsys_program_name != "mvrc" && $synopsys_program_name != "vsi" && $synopsys_program_name != "vcst"}  {
+  # The following setting removes new variable info messages from the end of the log file
+  set_app_var sh_new_variable_message false
+}
+false
+if { $synopsys_program_name == "mvrc"}  {
+   # Choose the stage you want to run MVRC. Allowed values are RTL or NETLIST
+   set MVRC_RUN "NETLIST"
+}
+if { $synopsys_program_name == "vsi" || $synopsys_program_name == "vcst"}  {
+  # Choose the stage you want to run VC Static. Allowed values are RTL or NETLIST
+  set VCLP_RUN "NETLIST"
+}
+if {$synopsys_program_name == "dc_shell"}  {
+
+  #################################################################################
+  # Design Compiler Setup Variables
+  #################################################################################
+
+  # Use the set_host_options command to enable multicore optimization to improve runtime.
+  # This feature has special usage and license requirements.  Refer to the 
+  # "Support for Multicore Technology" section in the Design Compiler User Guide
+  # for multicore usage guidelines.
+  # Note: This is a DC Ultra feature and is not supported in DC Expert.
+
+   set_host_options -max_cores 4
+
+  # Change alib_library_analysis_path to point to a central cache of analyzed libraries
+  # to save runtime and disk space.  The following setting only reflects the
+  # default value and should be changed to a central location for best results.
+
+  set_app_var alib_library_analysis_path .
+
+  # In cases where RTL has VHDL generate loops or SystemVerilog structs, switching 
+  # activity annotation from SAIF may be rejected, the following variable setting 
+  # improves SAIF annotation, by making sure that synthesis object names follow same 
+  # naming convention as used by RTL simulation. 
+
+  set_app_var hdlin_enable_upf_compatible_naming true
+  
+  # Enable the Golden UPF mode to use same originla UPF script file throughout the synthesis,
+  # physical implementation, and verification flow.
+
+#  set_app_var enable_golden_upf true
+
+  # By default the tool will create supply set handles. If your UPF has domain dependent
+  # supply nets, please uncomment the following line:
+
+  # set_app_var upf_create_implicit_supply_sets false
+  
+  # Add any additional Design Compiler variables needed here
+
+}
+true
+#set RTL_SOURCE_FILES  "picorv32a.v"      ;# Enter the list of source RTL files if reading from RTL
+#set RTL_SOURCE_FILES  "4FA.v"      ;# Enter the list of source RTL files if reading from RTL
+#set RTL_SOURCE_FILES  "4FA.v"      ;# Enter the list of source RTL files if reading from RTL
+# The following variables are used by scripts in the rm_dc_scripts folder to direct 
+# the location of the output files.
+set REPORTS_DIR "reports"
+reports
+set RESULTS_DIR "results"
+results
+file mkdir ${REPORTS_DIR}
+file mkdir ${RESULTS_DIR}
+#set variable OPTIMIZATION_FLOW from following RM+ flows
+#High Performance Low Power (hplp)
+#High Connectivity (hc)
+#Runtime Exploration (rtm_exp)
+set OPTIMIZATION_FLOW  "" ;# Specify one flow out of hplp | hc | rtm_exp
+#################################################################################
+# Search Path Setup
+#
+# Set up the search path to find the libraries and design files.
+#################################################################################
+set_app_var search_path ". ${ADDITIONAL_SEARCH_PATH} $search_path"
+.  /home/SCL_PDK/SCLPDK_V3.0_KIT/scl180/digital_pnr_kit/snps/non_rh/4M1L/ . /home/synopsys/syn/U-2022.12-SP5/libraries/syn /home/synopsys/syn/U-2022.12-SP5/dw/syn_ver /home/synopsys/syn/U-2022.12-SP5/dw/sim_ver
+# For a hierarchical flow, add the block-level results directories to the
+# search path to find the block-level design files.
+set HIER_DESIGNS "${DDC_HIER_DESIGNS} ${DC_BLOCK_ABSTRACTION_DESIGNS} ${DC_BLOCK_ABSTRACTION_DESIGNS_TIO}"
+  
+foreach design $HIER_DESIGNS {
+    lappend search_path ../${design}/results
+  }
+# For a hierarchical UPF flow, add the results directory to the search path for
+# Formality to find the output UPF files.
+lappend search_path ${RESULTS_DIR}
+. /home/SCL_PDK/SCLPDK_V3.0_KIT/scl180/digital_pnr_kit/snps/non_rh/4M1L/ . /home/synopsys/syn/U-2022.12-SP5/libraries/syn /home/synopsys/syn/U-2022.12-SP5/dw/syn_ver /home/synopsys/syn/U-2022.12-SP5/dw/sim_ver results
+#################################################################################
+# Library Setup
+#
+# This section is designed to work with the settings from common_setup.tcl
+# without any additional modification.
+#################################################################################
+if {$synopsys_program_name != "mvrc" && $synopsys_program_name != "vsi" && $synopsys_program_name != "vcst"}  {
+
+  # Milkyway variable settings
+
+  # Make sure to define the Milkyway library variable
+  # mw_design_library, it is needed by write_milkyway command
+
+  set mw_reference_library ${MW_REFERENCE_LIB_DIRS}
+  set mw_design_library ${DCRM_MW_LIBRARY_NAME}
+
+  set mw_site_name_mapping { {CORE unit} {Core unit} {core unit} }
+
+}
+ {CORE unit} {Core unit} {core unit} 
+if {$synopsys_program_name == "mvrc"}  {
+  set_app_var link_library "$TARGET_LIBRARY_FILES $ADDITIONAL_LINK_LIB_FILES"
+}
+if {$synopsys_program_name == "vsi" || $synopsys_program_name == "vcst"}  {
+  set_app_var link_library "$TARGET_LIBRARY_FILES $ADDITIONAL_LINK_LIB_FILES"
+}
+# The remainder of the setup below should only be performed in Design Compiler
+if {$synopsys_program_name == "dc_shell"}  {
+
+  set_app_var target_library ${TARGET_LIBRARY_FILES}
+  set_app_var synthetic_library dw_foundation.sldb
+
+   if { $OPTIMIZATION_FLOW == "hplp" } {
+  # Enabling the usage of DesignWare minPower Components requires additional DesignWare-LP license
+  # set_app_var synthetic_library "dw_minpower.sldb  dw_foundation.sldb"
+   }
+
+  set_app_var link_library "* $target_library $ADDITIONAL_LINK_LIB_FILES $synthetic_library"
+
+  # To apply the same min library to all scenarios for Multicorner-Multimode (MCMM), 
+  # uncomment the following to use set_min_library here.  Otherwise specify the min library
+  # with set_operating_conditions for each scenario in the ${DCRM_MCMM_SCENARIOS_SETUP_FILE}.
+
+  # foreach {max_library min_library} $MIN_LIBRARY_FILES {
+  #   set_min_library $max_library -min_version $min_library
+  # }
+
+  # Set the variable to use Verilog libraries for Test Design Rule Checking
+  # (See dc.tcl for details)
+
+  # set_app_var test_simulation_library <list of Verilog library files>
+
+  if {[shell_is_in_topographical_mode]} {
+
+    # To activate the extended layer mode to support 4095 layers uncomment the extend_mw_layers command 
+    # before creating the Milkyway library. The extended layer mode is permanent and cannot be reverted 
+    # back to the 255 layer mode once activated.
+
+    # extend_mw_layers
+
+    # Only create new Milkyway design library if it doesn't already exist
+    if {![file isdirectory $mw_design_library ]} {
+      create_mw_lib   -technology $TECH_FILE \
+                      -mw_reference_library $mw_reference_library \
+                      $mw_design_library
+    } else {
+      # If Milkyway design library already exists, ensure that it is consistent with specified Milkyway reference libraries
+      set_mw_lib_reference $mw_design_library -mw_reference_library $mw_reference_library
+    }
+
+    open_mw_lib     $mw_design_library
+
+    set_check_library_options -upf -mcmm
+    check_library > ${REPORTS_DIR}/${DCRM_CHECK_LIBRARY_REPORT}
+
+    # For MCMM flow, do not set_tlu_plus_files here.  TLUPlus files should be
+    # set up for each scenario in the ${DCRM_MCMM_SCENARIOS_SETUP_FILE}
+  }
+
+  #################################################################################
+  # Library Modifications
+  #
+  # Apply library modifications after the libraries are loaded.
+  #################################################################################
+
+  if {[file exists [which ${LIBRARY_DONT_USE_FILE}]]} {
+    puts "RM-Info: Sourcing script file [which ${LIBRARY_DONT_USE_FILE}]\n"
+    source -echo -verbose ${LIBRARY_DONT_USE_FILE}
+  }
+    set LIBRARY_DONT_USE_PRE_COMPILE_LIST  "./rm_dc_scripts/snpsll_hpdu_synth.tcl";# Tcl file for Synopsys Logic Library don't use list before first compile          
+}
+./rm_dc_scripts/snpsll_hpdu_synth.tcl
+puts "RM-Info: Completed script [info script]\n"
+RM-Info: Completed script /home/user/Documents/OELP_pjts/sorter_pipelined_32_8/sorter_32_8/DC/rm_setup/dc_setup.tcl
+
+# Define RTL files
+set RTL_SOURCE_FILES "./../rtl/piplined.v ./../rtl/BMK_unit.v ./../rtl/compare_swap_dsc.v ./../rtl/max_k.v ./../rtl/compare_and_swap_asc.v ./../rtl/maxBMnby2.v"
+./../rtl/piplined.v ./../rtl/BMK_unit.v ./../rtl/compare_swap_dsc.v ./../rtl/max_k.v ./../rtl/compare_and_swap_asc.v ./../rtl/maxBMnby2.v
+#read_sverilog $RTL_SOURCE_FILES
+define_design_lib WORK -path ./WORK
+1
+#set_dont_use [get_lib_cells */an*]
+# Elaborate design
+analyze -format sverilog ${RTL_SOURCE_FILES}
+Running PRESTO HDLC
+Compiling source file ./../rtl/piplined.v
+Compiling source file ./../rtl/BMK_unit.v
+Compiling source file ./../rtl/compare_swap_dsc.v
+Compiling source file ./../rtl/max_k.v
+Compiling source file ./../rtl/compare_and_swap_asc.v
+Compiling source file ./../rtl/maxBMnby2.v
+Presto compilation completed successfully.
+Loading db file '/home/SCL_PDK/SCLPDK_V3.0_KIT/scl180/stdcell/fs120/4M1IL/liberty/lib_flow_ss/tsl18fs120_scl_ss.db'
+Loading db file '/home/SCL_PDK/SCLPDK_V3.0_KIT/scl180/stdcell/fs120/4M1IL/liberty/lib_flow_ff/tsl18fs120_scl_ff.db'
+Loading db file '/home/synopsys/syn/U-2022.12-SP5/libraries/syn/dw_foundation.sldb'
+1
+elaborate ${DESIGN_NAME}
+Loading db file '/home/synopsys/syn/U-2022.12-SP5/libraries/syn/gtech.db'
+Loading db file '/home/synopsys/syn/U-2022.12-SP5/libraries/syn/standard.sldb'
+  Loading link library 'tsl18fs120_scl_ss'
+  Loading link library 'tsl18fs120_scl_ff'
+  Loading link library 'gtech'
+Running PRESTO HDLC
+Warning:  ./../rtl/piplined.v:28: signed to unsigned part selection occurs. (VER-318)
+Warning:  ./../rtl/piplined.v:47: signed to unsigned part selection occurs. (VER-318)
+Warning:  ./../rtl/piplined.v:107: signed to unsigned part selection occurs. (VER-318)
+Warning:  ./../rtl/piplined.v:117: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./../rtl/piplined.v:125: signed to unsigned part selection occurs. (VER-318)
+Warning:  ./../rtl/piplined.v:132: signed to unsigned part selection occurs. (VER-318)
+Warning:  ./../rtl/piplined.v:140: signed to unsigned part selection occurs. (VER-318)
+Warning:  ./../rtl/piplined.v:160: signed to unsigned part selection occurs. (VER-318)
+Warning:  ./../rtl/piplined.v:173: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./../rtl/piplined.v:188: signed to unsigned part selection occurs. (VER-318)
+Warning:  ./../rtl/piplined.v:234: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./../rtl/piplined.v:246: signed to unsigned conversion occurs. (VER-318)
+Warning:  ./../rtl/piplined.v:252: unsigned to signed assignment occurs. (VER-318)
+
+Inferred memory devices in process
+        in routine partial_sorter_general line 24 in file
+                './../rtl/piplined.v'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|   in_data_reg_reg   | Flip-flop |  512  |  Y  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+
+Inferred memory devices in process
+        in routine partial_sorter_general line 35 in file
+                './../rtl/piplined.v'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+| input_valid_reg_reg | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+
+Inferred memory devices in process
+        in routine partial_sorter_general line 81 in file
+                './../rtl/piplined.v'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+| valid_shift_reg_reg | Flip-flop |  14   |  Y  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+
+Inferred memory devices in process
+        in routine partial_sorter_general line 115 in file
+                './../rtl/piplined.v'.
+=======================================================================================================================
+|                        Register Name                        |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+=======================================================================================================================
+| bitonic_stages[1].intermediate_stage_reg.wide_stage_reg_reg | Flip-flop |  512  |  Y  | N  | Y  | N  | N  | N  | N  |
+| bitonic_stages[2].intermediate_stage_reg.wide_stage_reg_reg | Flip-flop |  512  |  Y  | N  | Y  | N  | N  | N  | N  |
+=======================================================================================================================
+
+Inferred memory devices in process
+        in routine partial_sorter_general line 171 in file
+                './../rtl/piplined.v'.
+==========================================================================================
+|         Register Name          |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+==========================================================================================
+| max_tree_inputs_registered_reg | Flip-flop |  512  |  Y  | N  | Y  | N  | N  | N  | N  |
+==========================================================================================
+
+Inferred memory devices in process
+        in routine partial_sorter_general line 232 in file
+                './../rtl/piplined.v'.
+=====================================================================================
+|       Register Name       |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+=====================================================================================
+| original_max_tree_reg_reg | Flip-flop |  256  |  Y  | N  | Y  | N  | N  | N  | N  |
+=====================================================================================
+
+Inferred memory devices in process
+        in routine partial_sorter_general line 250 in file
+                './../rtl/piplined.v'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|  output_valid_reg   | Flip-flop |   1   |  N  | N  | Y  | N  | N  | N  | N  |
+|  out_data_reg_reg   | Flip-flop |  128  |  Y  | N  | Y  | N  | N  | N  | N  |
+===============================================================================
+Presto compilation completed successfully. (partial_sorter_general)
+Elaborated 1 design.
+Current design is now 'partial_sorter_general'.
+Information: Building the design 'BMK_unit' instantiated from design 'partial_sorter_general' with
+        the parameters "K=2,sortdir=0". (HDL-193)
+Warning:  ./../rtl/BMK_unit.v:39: signed to unsigned part selection occurs. (VER-318)
+Warning:  ./../rtl/BMK_unit.v:40: signed to unsigned part selection occurs. (VER-318)
+Warning:  ./../rtl/BMK_unit.v:51: signed to unsigned part selection occurs. (VER-318)
+Warning:  ./../rtl/BMK_unit.v:52: signed to unsigned part selection occurs. (VER-318)
+Presto compilation completed successfully. (BMK_unit_K2_sortdir0)
+Information: Building the design 'BMK_unit' instantiated from design 'partial_sorter_general' with
+        the parameters "K=2,sortdir=-1". (HDL-193)
+Warning:  ./../rtl/BMK_unit.v:39: signed to unsigned part selection occurs. (VER-318)
+Warning:  ./../rtl/BMK_unit.v:40: signed to unsigned part selection occurs. (VER-318)
+Warning:  ./../rtl/BMK_unit.v:51: signed to unsigned part selection occurs. (VER-318)
+Warning:  ./../rtl/BMK_unit.v:52: signed to unsigned part selection occurs. (VER-318)
+Presto compilation completed successfully. (BMK_unit_K2_sortdirn1)
+Information: Building the design 'BMK_unit' instantiated from design 'partial_sorter_general' with
+        the parameters "K=4,sortdir=0". (HDL-193)
+Warning:  ./../rtl/BMK_unit.v:62: signed to unsigned part selection occurs. (VER-318)
+Warning:  ./../rtl/BMK_unit.v:63: signed to unsigned part selection occurs. (VER-318)
+Warning:  ./../rtl/BMK_unit.v:74: signed to unsigned part selection occurs. (VER-318)
+Warning:  ./../rtl/BMK_unit.v:75: signed to unsigned part selection occurs. (VER-318)
+Warning:  ./../rtl/BMK_unit.v:80: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./../rtl/BMK_unit.v:89: signed to unsigned part selection occurs. (VER-318)
+Warning:  ./../rtl/BMK_unit.v:90: signed to unsigned part selection occurs. (VER-318)
+Warning:  ./../rtl/BMK_unit.v:102: signed to unsigned part selection occurs. (VER-318)
+Warning:  ./../rtl/BMK_unit.v:103: signed to unsigned part selection occurs. (VER-318)
+
+Inferred memory devices in process
+        in routine BMK_unit_K4_sortdir0 line 78 in file
+                './../rtl/BMK_unit.v'.
+========================================================================================================
+|                Register Name                 |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+========================================================================================================
+| recursive_case_bmk.stage1_comp_out_r_bmk_reg | Flip-flop |  64   |  Y  | N  | Y  | N  | N  | N  | N  |
+========================================================================================================
+Presto compilation completed successfully. (BMK_unit_K4_sortdir0)
+Information: Building the design 'BMK_unit' instantiated from design 'partial_sorter_general' with
+        the parameters "K=4,sortdir=-1". (HDL-193)
+Warning:  ./../rtl/BMK_unit.v:62: signed to unsigned part selection occurs. (VER-318)
+Warning:  ./../rtl/BMK_unit.v:63: signed to unsigned part selection occurs. (VER-318)
+Warning:  ./../rtl/BMK_unit.v:74: signed to unsigned part selection occurs. (VER-318)
+Warning:  ./../rtl/BMK_unit.v:75: signed to unsigned part selection occurs. (VER-318)
+Warning:  ./../rtl/BMK_unit.v:80: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./../rtl/BMK_unit.v:89: signed to unsigned part selection occurs. (VER-318)
+Warning:  ./../rtl/BMK_unit.v:90: signed to unsigned part selection occurs. (VER-318)
+Warning:  ./../rtl/BMK_unit.v:102: signed to unsigned part selection occurs. (VER-318)
+Warning:  ./../rtl/BMK_unit.v:103: signed to unsigned part selection occurs. (VER-318)
+
+Inferred memory devices in process
+        in routine BMK_unit_K4_sortdirn1 line 78 in file
+                './../rtl/BMK_unit.v'.
+========================================================================================================
+|                Register Name                 |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+========================================================================================================
+| recursive_case_bmk.stage1_comp_out_r_bmk_reg | Flip-flop |  64   |  Y  | N  | Y  | N  | N  | N  | N  |
+========================================================================================================
+Presto compilation completed successfully. (BMK_unit_K4_sortdirn1)
+Information: Building the design 'BMK_unit' instantiated from design 'partial_sorter_general' with
+        the parameters "K=8,sortdir=0". (HDL-193)
+Warning:  ./../rtl/BMK_unit.v:62: signed to unsigned part selection occurs. (VER-318)
+Warning:  ./../rtl/BMK_unit.v:63: signed to unsigned part selection occurs. (VER-318)
+Warning:  ./../rtl/BMK_unit.v:74: signed to unsigned part selection occurs. (VER-318)
+Warning:  ./../rtl/BMK_unit.v:75: signed to unsigned part selection occurs. (VER-318)
+Warning:  ./../rtl/BMK_unit.v:80: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./../rtl/BMK_unit.v:89: signed to unsigned part selection occurs. (VER-318)
+Warning:  ./../rtl/BMK_unit.v:90: signed to unsigned part selection occurs. (VER-318)
+Warning:  ./../rtl/BMK_unit.v:102: signed to unsigned part selection occurs. (VER-318)
+Warning:  ./../rtl/BMK_unit.v:103: signed to unsigned part selection occurs. (VER-318)
+
+Inferred memory devices in process
+        in routine BMK_unit_K8_sortdir0 line 78 in file
+                './../rtl/BMK_unit.v'.
+========================================================================================================
+|                Register Name                 |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+========================================================================================================
+| recursive_case_bmk.stage1_comp_out_r_bmk_reg | Flip-flop |  128  |  Y  | N  | Y  | N  | N  | N  | N  |
+========================================================================================================
+Presto compilation completed successfully. (BMK_unit_K8_sortdir0)
+Information: Building the design 'BMK_unit' instantiated from design 'partial_sorter_general' with
+        the parameters "K=8,sortdir=-1". (HDL-193)
+Warning:  ./../rtl/BMK_unit.v:62: signed to unsigned part selection occurs. (VER-318)
+Warning:  ./../rtl/BMK_unit.v:63: signed to unsigned part selection occurs. (VER-318)
+Warning:  ./../rtl/BMK_unit.v:74: signed to unsigned part selection occurs. (VER-318)
+Warning:  ./../rtl/BMK_unit.v:75: signed to unsigned part selection occurs. (VER-318)
+Warning:  ./../rtl/BMK_unit.v:80: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./../rtl/BMK_unit.v:89: signed to unsigned part selection occurs. (VER-318)
+Warning:  ./../rtl/BMK_unit.v:90: signed to unsigned part selection occurs. (VER-318)
+Warning:  ./../rtl/BMK_unit.v:102: signed to unsigned part selection occurs. (VER-318)
+Warning:  ./../rtl/BMK_unit.v:103: signed to unsigned part selection occurs. (VER-318)
+
+Inferred memory devices in process
+        in routine BMK_unit_K8_sortdirn1 line 78 in file
+                './../rtl/BMK_unit.v'.
+========================================================================================================
+|                Register Name                 |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+========================================================================================================
+| recursive_case_bmk.stage1_comp_out_r_bmk_reg | Flip-flop |  128  |  Y  | N  | Y  | N  | N  | N  | N  |
+========================================================================================================
+Presto compilation completed successfully. (BMK_unit_K8_sortdirn1)
+Information: Building the design 'maxBMnby2' instantiated from design 'partial_sorter_general' with
+        the parameters "K=8,sortdir=0". (HDL-193)
+Warning:  ./../rtl/maxBMnby2.v:44: unsigned to signed assignment occurs. (VER-318)
+
+Inferred memory devices in process
+        in routine maxBMnby2_K8_sortdir0 line 42 in file
+                './../rtl/maxBMnby2.v'.
+==================================================================================
+|     Register Name      |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+==================================================================================
+| merged_max_r_maxbm_reg | Flip-flop |  128  |  Y  | N  | Y  | N  | N  | N  | N  |
+==================================================================================
+Presto compilation completed successfully. (maxBMnby2_K8_sortdir0)
+Information: Building the design 'maxBMnby2' instantiated from design 'partial_sorter_general' with
+        the parameters "K=8,sortdir=1". (HDL-193)
+Warning:  ./../rtl/maxBMnby2.v:44: unsigned to signed assignment occurs. (VER-318)
+
+Inferred memory devices in process
+        in routine maxBMnby2_K8_sortdir1 line 42 in file
+                './../rtl/maxBMnby2.v'.
+==================================================================================
+|     Register Name      |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+==================================================================================
+| merged_max_r_maxbm_reg | Flip-flop |  128  |  Y  | N  | Y  | N  | N  | N  | N  |
+==================================================================================
+Presto compilation completed successfully. (maxBMnby2_K8_sortdir1)
+Information: Building the design 'compare_swap_asc'. (HDL-193)
+Presto compilation completed successfully. (compare_swap_asc)
+Information: Building the design 'compare_swap_desc'. (HDL-193)
+Presto compilation completed successfully. (compare_swap_desc)
+Information: Building the design 'max_k' instantiated from design 'maxBMnby2_K8_sortdir0' with
+        the parameters "K=8". (HDL-193)
+Warning:  ./../rtl/max_k.v:38: signed to unsigned part selection occurs. (VER-318)
+Warning:  ./../rtl/max_k.v:39: signed to unsigned part selection occurs. (VER-318)
+Warning:  ./../rtl/max_k.v:50: signed to unsigned part selection occurs. (VER-318)
+Presto compilation completed successfully. (max_k_K8)
+Information: Building the design 'BMK_unit' instantiated from design 'maxBMnby2_K8_sortdir1' with
+        the parameters "K=8,sortdir=1". (HDL-193)
+Warning:  ./../rtl/BMK_unit.v:62: signed to unsigned part selection occurs. (VER-318)
+Warning:  ./../rtl/BMK_unit.v:63: signed to unsigned part selection occurs. (VER-318)
+Warning:  ./../rtl/BMK_unit.v:74: signed to unsigned part selection occurs. (VER-318)
+Warning:  ./../rtl/BMK_unit.v:75: signed to unsigned part selection occurs. (VER-318)
+Warning:  ./../rtl/BMK_unit.v:80: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./../rtl/BMK_unit.v:89: signed to unsigned part selection occurs. (VER-318)
+Warning:  ./../rtl/BMK_unit.v:90: signed to unsigned part selection occurs. (VER-318)
+Warning:  ./../rtl/BMK_unit.v:102: signed to unsigned part selection occurs. (VER-318)
+Warning:  ./../rtl/BMK_unit.v:103: signed to unsigned part selection occurs. (VER-318)
+
+Inferred memory devices in process
+        in routine BMK_unit_K8_sortdir1 line 78 in file
+                './../rtl/BMK_unit.v'.
+========================================================================================================
+|                Register Name                 |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+========================================================================================================
+| recursive_case_bmk.stage1_comp_out_r_bmk_reg | Flip-flop |  128  |  Y  | N  | Y  | N  | N  | N  | N  |
+========================================================================================================
+Presto compilation completed successfully. (BMK_unit_K8_sortdir1)
+Information: Building the design 'BMK_unit' instantiated from design 'BMK_unit_K8_sortdir1' with
+        the parameters "K=4,sortdir=1". (HDL-193)
+Warning:  ./../rtl/BMK_unit.v:62: signed to unsigned part selection occurs. (VER-318)
+Warning:  ./../rtl/BMK_unit.v:63: signed to unsigned part selection occurs. (VER-318)
+Warning:  ./../rtl/BMK_unit.v:74: signed to unsigned part selection occurs. (VER-318)
+Warning:  ./../rtl/BMK_unit.v:75: signed to unsigned part selection occurs. (VER-318)
+Warning:  ./../rtl/BMK_unit.v:80: unsigned to signed assignment occurs. (VER-318)
+Warning:  ./../rtl/BMK_unit.v:89: signed to unsigned part selection occurs. (VER-318)
+Warning:  ./../rtl/BMK_unit.v:90: signed to unsigned part selection occurs. (VER-318)
+Warning:  ./../rtl/BMK_unit.v:102: signed to unsigned part selection occurs. (VER-318)
+Warning:  ./../rtl/BMK_unit.v:103: signed to unsigned part selection occurs. (VER-318)
+
+Inferred memory devices in process
+        in routine BMK_unit_K4_sortdir1 line 78 in file
+                './../rtl/BMK_unit.v'.
+========================================================================================================
+|                Register Name                 |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+========================================================================================================
+| recursive_case_bmk.stage1_comp_out_r_bmk_reg | Flip-flop |  64   |  Y  | N  | Y  | N  | N  | N  | N  |
+========================================================================================================
+Presto compilation completed successfully. (BMK_unit_K4_sortdir1)
+Information: Building the design 'BMK_unit' instantiated from design 'BMK_unit_K4_sortdir1' with
+        the parameters "K=2,sortdir=1". (HDL-193)
+Warning:  ./../rtl/BMK_unit.v:39: signed to unsigned part selection occurs. (VER-318)
+Warning:  ./../rtl/BMK_unit.v:40: signed to unsigned part selection occurs. (VER-318)
+Warning:  ./../rtl/BMK_unit.v:51: signed to unsigned part selection occurs. (VER-318)
+Warning:  ./../rtl/BMK_unit.v:52: signed to unsigned part selection occurs. (VER-318)
+Presto compilation completed successfully. (BMK_unit_K2_sortdir1)
+1
+current_design
+Current design is 'partial_sorter_general'.
+{partial_sorter_general}
+# Read constraint file
+read_sdc  -echo ./../CONSTRAINTS/rca.sdc
+
+Reading SDC version 2.1...
+create_clock -period 10 [get_ports clk]
+#set_input_delay -max 0.25 -clock clk [all_inputs]
+#set_input_transition 0.2 [all_inputs]
+#set_output_delay -max 0.25 -clock clk [all_outputs]
+#set_clock_uncertainty -setup 0.100 [get_clocks clk]
+#set_clock_uncertainty -hold 0.100 [get_clocks clk]
+#set_max_transition 0.20 [current_design]
+#set_max_transition -clock_path 0.150 [get_clocks clk]
+1
+# Perform synthesis
+compile
+CPU Load: 1%, Ram Free: 13 GB, Swap Free: 29 GB, Work Disk Free: 19 GB, Tmp Disk Free: 19 GB
+Information: Checking out the license 'DesignWare'. (SEC-104)
+Information: Evaluating DesignWare library utilization. (UISN-27)
+
+============================================================================
+| DesignWare Building Block Library  |         Version         | Available |
+============================================================================
+| Basic DW Building Blocks           | U-2022.12-DWBB_202212.5 |     *     |
+| Licensed DW Building Blocks        | U-2022.12-DWBB_202212.5 |     *     |
+============================================================================
+
+====================================================================================================
+| Flow Information                                                                                 |
+----------------------------------------------------------------------------------------------------
+| Flow         | Design Compiler                                                                   |
+====================================================================================================
+| Design Information                                      | Value                                  |
+====================================================================================================
+| Number of Scenarios                                     | 0                                      |
+| Leaf Cell Count                                         | 5916                                   |
+| Number of User Hierarchies                              | 251                                    |
+| Sequential Cell Count                                   | 5136                                   |
+| Macro Count                                             | 0                                      |
+| Number of Power Domains                                 | 0                                      |
+| Number of Path Groups                                   | 2                                      |
+| Number of VT Class                                      | 0                                      |
+| Number of Clocks                                        | 1                                      |
+| Number of Dont Touch Cells                              | 312                                    |
+| Number of Dont Touch Nets                               | 0                                      |
+| Number of Size Only Cells                               | 0                                      |
+| Design with UPF Data                                    | false                                  |
+====================================================================================================
+
+Information: There are 262 potential problems in your design. Please run 'check_design' for more information. (LINT-99)
+
+
+Warning: Operating condition tsl18fs120_scl_ss set on design partial_sorter_general has different process,
+voltage and temperatures parameters than the parameters at which target library 
+tsl18fs120_scl_ff is characterized. Delays may be inaccurate as a result. (OPT-998)
+
+  Beginning Pass 1 Mapping
+  ------------------------
+  Processing 'compare_swap_asc_0'
+  Processing 'BMK_unit_K2_sortdir0_0'
+  Processing 'BMK_unit_K4_sortdir0_0'
+  Processing 'BMK_unit_K8_sortdir0_0'
+  Processing 'max_k_K8_0'
+  Processing 'maxBMnby2_K8_sortdir0_0'
+  Processing 'compare_swap_desc_0'
+  Processing 'BMK_unit_K2_sortdir1_0'
+  Processing 'BMK_unit_K4_sortdir1_0'
+  Processing 'BMK_unit_K8_sortdir1'
+  Processing 'maxBMnby2_K8_sortdir1'
+  Processing 'BMK_unit_K2_sortdirn1_0'
+  Processing 'BMK_unit_K4_sortdirn1_0'
+  Processing 'BMK_unit_K8_sortdirn1_0'
+  Processing 'partial_sorter_general'
+
+  Updating timing information
+Information: Updating design information... (UID-85)
+
+  Beginning Implementation Selection
+  ----------------------------------
+  Mapping 'compare_swap_asc_1_DW_cmp_0'
+  Mapping 'compare_swap_asc_2_DW_cmp_0'
+  Mapping 'compare_swap_asc_9_DW_cmp_0'
+  Mapping 'compare_swap_asc_10_DW_cmp_0'
+  Mapping 'compare_swap_asc_3_DW_cmp_0'
+  Mapping 'compare_swap_asc_4_DW_cmp_0'
+  Mapping 'compare_swap_asc_11_DW_cmp_0'
+  Mapping 'compare_swap_asc_12_DW_cmp_0'
+  Mapping 'compare_swap_asc_25_DW_cmp_0'
+  Mapping 'compare_swap_asc_26_DW_cmp_0'
+  Mapping 'compare_swap_asc_27_DW_cmp_0'
+  Mapping 'compare_swap_asc_28_DW_cmp_0'
+  Mapping 'compare_swap_asc_29_DW_cmp_0'
+  Mapping 'compare_swap_asc_30_DW_cmp_0'
+  Mapping 'compare_swap_asc_31_DW_cmp_0'
+  Mapping 'compare_swap_asc_32_DW_cmp_0'
+  Mapping 'compare_swap_asc_33_DW_cmp_0'
+  Mapping 'compare_swap_asc_34_DW_cmp_0'
+  Mapping 'compare_swap_asc_35_DW_cmp_0'
+  Mapping 'compare_swap_asc_36_DW_cmp_0'
+  Mapping 'compare_swap_desc_1_DW_cmp_0'
+  Mapping 'compare_swap_desc_2_DW_cmp_0'
+  Mapping 'compare_swap_desc_5_DW_cmp_0'
+  Mapping 'compare_swap_desc_6_DW_cmp_0'
+  Mapping 'compare_swap_desc_3_DW_cmp_0'
+  Mapping 'compare_swap_desc_4_DW_cmp_0'
+  Mapping 'compare_swap_desc_7_DW_cmp_0'
+  Mapping 'compare_swap_desc_8_DW_cmp_0'
+  Mapping 'compare_swap_desc_17_DW_cmp_0'
+  Mapping 'compare_swap_desc_18_DW_cmp_0'
+  Mapping 'compare_swap_desc_19_DW_cmp_0'
+  Mapping 'compare_swap_desc_20_DW_cmp_0'
+  Mapping 'compare_swap_asc_37_DW_cmp_0'
+  Mapping 'compare_swap_asc_38_DW_cmp_0'
+  Mapping 'compare_swap_asc_39_DW_cmp_0'
+  Mapping 'compare_swap_asc_40_DW_cmp_0'
+  Mapping 'compare_swap_asc_41_DW_cmp_0'
+  Mapping 'compare_swap_asc_42_DW_cmp_0'
+  Mapping 'compare_swap_asc_43_DW_cmp_0'
+  Mapping 'compare_swap_asc_44_DW_cmp_0'
+  Mapping 'compare_swap_asc_5_DW_cmp_0'
+  Mapping 'compare_swap_asc_6_DW_cmp_0'
+  Mapping 'compare_swap_asc_13_DW_cmp_0'
+  Mapping 'compare_swap_asc_14_DW_cmp_0'
+  Mapping 'compare_swap_asc_7_DW_cmp_0'
+  Mapping 'compare_swap_asc_8_DW_cmp_0'
+  Mapping 'compare_swap_asc_15_DW_cmp_0'
+  Mapping 'compare_swap_asc_16_DW_cmp_0'
+  Mapping 'compare_swap_asc_45_DW_cmp_0'
+  Mapping 'compare_swap_asc_46_DW_cmp_0'
+  Mapping 'compare_swap_asc_47_DW_cmp_0'
+  Mapping 'compare_swap_asc_48_DW_cmp_0'
+  Mapping 'compare_swap_asc_49_DW_cmp_0'
+  Mapping 'compare_swap_asc_50_DW_cmp_0'
+  Mapping 'compare_swap_asc_51_DW_cmp_0'
+  Mapping 'compare_swap_asc_52_DW_cmp_0'
+  Mapping 'compare_swap_asc_53_DW_cmp_0'
+  Mapping 'compare_swap_asc_54_DW_cmp_0'
+  Mapping 'compare_swap_asc_55_DW_cmp_0'
+  Mapping 'compare_swap_asc_56_DW_cmp_0'
+  Mapping 'compare_swap_desc_9_DW_cmp_0'
+  Mapping 'compare_swap_desc_10_DW_cmp_0'
+  Mapping 'compare_swap_desc_21_DW_cmp_0'
+  Mapping 'compare_swap_desc_22_DW_cmp_0'
+  Mapping 'compare_swap_desc_11_DW_cmp_0'
+  Mapping 'compare_swap_desc_12_DW_cmp_0'
+  Mapping 'compare_swap_desc_23_DW_cmp_0'
+  Mapping 'compare_swap_desc_24_DW_cmp_0'
+  Mapping 'compare_swap_desc_37_DW_cmp_0'
+  Mapping 'compare_swap_desc_38_DW_cmp_0'
+  Mapping 'compare_swap_desc_39_DW_cmp_0'
+  Mapping 'compare_swap_desc_40_DW_cmp_0'
+  Mapping 'compare_swap_asc_17_DW_cmp_0'
+  Mapping 'compare_swap_asc_18_DW_cmp_0'
+  Mapping 'compare_swap_asc_57_DW_cmp_0'
+  Mapping 'compare_swap_asc_58_DW_cmp_0'
+  Mapping 'compare_swap_asc_19_DW_cmp_0'
+  Mapping 'compare_swap_asc_20_DW_cmp_0'
+  Mapping 'compare_swap_asc_59_DW_cmp_0'
+  Mapping 'compare_swap_asc_60_DW_cmp_0'
+  Mapping 'compare_swap_asc_73_DW_cmp_0'
+  Mapping 'compare_swap_asc_74_DW_cmp_0'
+  Mapping 'compare_swap_asc_75_DW_cmp_0'
+  Mapping 'compare_swap_asc_76_DW_cmp_0'
+  Mapping 'compare_swap_desc_13_DW_cmp_0'
+  Mapping 'compare_swap_desc_14_DW_cmp_0'
+  Mapping 'compare_swap_desc_25_DW_cmp_0'
+  Mapping 'compare_swap_desc_26_DW_cmp_0'
+  Mapping 'compare_swap_desc_15_DW_cmp_0'
+  Mapping 'compare_swap_desc_16_DW_cmp_0'
+  Mapping 'compare_swap_desc_27_DW_cmp_0'
+  Mapping 'compare_swap_desc_28_DW_cmp_0'
+  Mapping 'compare_swap_desc_41_DW_cmp_0'
+  Mapping 'compare_swap_desc_42_DW_cmp_0'
+  Mapping 'compare_swap_desc_43_DW_cmp_0'
+  Mapping 'compare_swap_desc_44_DW_cmp_0'
+  Mapping 'compare_swap_asc_21_DW_cmp_0'
+  Mapping 'compare_swap_asc_22_DW_cmp_0'
+  Mapping 'compare_swap_asc_61_DW_cmp_0'
+  Mapping 'compare_swap_asc_62_DW_cmp_0'
+  Mapping 'compare_swap_asc_23_DW_cmp_0'
+  Mapping 'compare_swap_asc_24_DW_cmp_0'
+  Mapping 'compare_swap_asc_63_DW_cmp_0'
+  Mapping 'compare_swap_asc_64_DW_cmp_0'
+  Mapping 'compare_swap_asc_77_DW_cmp_0'
+  Mapping 'compare_swap_asc_78_DW_cmp_0'
+  Mapping 'compare_swap_asc_79_DW_cmp_0'
+  Mapping 'compare_swap_asc_80_DW_cmp_0'
+  Mapping 'compare_swap_desc_29_DW_cmp_0'
+  Mapping 'compare_swap_desc_30_DW_cmp_0'
+  Mapping 'compare_swap_desc_45_DW_cmp_0'
+  Mapping 'compare_swap_desc_46_DW_cmp_0'
+  Mapping 'compare_swap_asc_65_DW_cmp_0'
+  Mapping 'compare_swap_asc_66_DW_cmp_0'
+  Mapping 'compare_swap_asc_81_DW_cmp_0'
+  Mapping 'compare_swap_asc_82_DW_cmp_0'
+  Mapping 'compare_swap_desc_31_DW_cmp_0'
+  Mapping 'compare_swap_desc_32_DW_cmp_0'
+  Mapping 'compare_swap_desc_47_DW_cmp_0'
+  Mapping 'compare_swap_desc_48_DW_cmp_0'
+  Mapping 'compare_swap_asc_67_DW_cmp_0'
+  Mapping 'compare_swap_asc_68_DW_cmp_0'
+  Mapping 'compare_swap_asc_83_DW_cmp_0'
+  Mapping 'compare_swap_asc_84_DW_cmp_0'
+  Mapping 'compare_swap_desc_33_DW_cmp_0'
+  Mapping 'compare_swap_desc_34_DW_cmp_0'
+  Mapping 'compare_swap_desc_49_DW_cmp_0'
+  Mapping 'compare_swap_desc_50_DW_cmp_0'
+  Mapping 'compare_swap_asc_69_DW_cmp_0'
+  Mapping 'compare_swap_asc_70_DW_cmp_0'
+  Mapping 'compare_swap_asc_85_DW_cmp_0'
+  Mapping 'compare_swap_asc_86_DW_cmp_0'
+  Mapping 'compare_swap_desc_35_DW_cmp_0'
+  Mapping 'compare_swap_desc_36_DW_cmp_0'
+  Mapping 'compare_swap_desc_51_DW_cmp_0'
+  Mapping 'compare_swap_desc_52_DW_cmp_0'
+  Mapping 'compare_swap_asc_71_DW_cmp_0'
+  Mapping 'compare_swap_asc_72_DW_cmp_0'
+  Mapping 'compare_swap_asc_87_DW_cmp_0'
+  Mapping 'compare_swap_asc_88_DW_cmp_0'
+  Mapping 'compare_swap_desc_53_DW_cmp_0'
+  Mapping 'compare_swap_asc_89_DW_cmp_0'
+  Mapping 'compare_swap_desc_54_DW_cmp_0'
+  Mapping 'compare_swap_asc_90_DW_cmp_0'
+  Mapping 'compare_swap_desc_55_DW_cmp_0'
+  Mapping 'compare_swap_asc_91_DW_cmp_0'
+  Mapping 'compare_swap_desc_56_DW_cmp_0'
+  Mapping 'compare_swap_asc_92_DW_cmp_0'
+  Mapping 'compare_swap_desc_57_DW_cmp_0'
+  Mapping 'compare_swap_asc_93_DW_cmp_0'
+  Mapping 'compare_swap_desc_58_DW_cmp_0'
+  Mapping 'compare_swap_asc_94_DW_cmp_0'
+  Mapping 'compare_swap_desc_59_DW_cmp_0'
+  Mapping 'compare_swap_asc_95_DW_cmp_0'
+  Mapping 'compare_swap_desc_0_DW_cmp_0'
+  Mapping 'compare_swap_asc_0_DW_cmp_0'
+Information: Command 'do_operand_isolation' is obsolete and is being ignored.  Please refer to the replacement command 'set power_enable_datapath_gating true' instead. (INFO-118)
+
+  Beginning Mapping Optimizations  (Medium effort)
+  -------------------------------
+Information: Added key list 'DesignWare' to design 'compare_swap_asc_1'. (DDB-72)
+Information: Added key list 'DesignWare' to design 'compare_swap_asc_2'. (DDB-72)
+Information: Added key list 'DesignWare' to design 'compare_swap_asc_9'. (DDB-72)
+Information: Added key list 'DesignWare' to design 'compare_swap_asc_10'. (DDB-72)
+Information: Added key list 'DesignWare' to design 'compare_swap_asc_3'. (DDB-72)
+Information: Added key list 'DesignWare' to design 'compare_swap_asc_4'. (DDB-72)
+Information: Added key list 'DesignWare' to design 'compare_swap_asc_11'. (DDB-72)
+Information: Added key list 'DesignWare' to design 'compare_swap_asc_12'. (DDB-72)
+Information: Added key list 'DesignWare' to design 'compare_swap_asc_25'. (DDB-72)
+Information: Added key list 'DesignWare' to design 'compare_swap_asc_26'. (DDB-72)
+Information: Added key list 'DesignWare' to design 'compare_swap_asc_27'. (DDB-72)
+Information: Added key list 'DesignWare' to design 'compare_swap_asc_28'. (DDB-72)
+Information: Added key list 'DesignWare' to design 'compare_swap_asc_29'. (DDB-72)
+Information: Added key list 'DesignWare' to design 'compare_swap_asc_30'. (DDB-72)
+Information: Added key list 'DesignWare' to design 'compare_swap_asc_31'. (DDB-72)
+Information: Added key list 'DesignWare' to design 'compare_swap_asc_32'. (DDB-72)
+Information: Added key list 'DesignWare' to design 'compare_swap_asc_33'. (DDB-72)
+Information: Added key list 'DesignWare' to design 'compare_swap_asc_34'. (DDB-72)
+Information: Added key list 'DesignWare' to design 'compare_swap_asc_35'. (DDB-72)
+Information: Added key list 'DesignWare' to design 'compare_swap_asc_36'. (DDB-72)
+Information: Added key list 'DesignWare' to design 'compare_swap_desc_1'. (DDB-72)
+Information: Added key list 'DesignWare' to design 'compare_swap_desc_2'. (DDB-72)
+Information: Added key list 'DesignWare' to design 'compare_swap_desc_5'. (DDB-72)
+Information: Added key list 'DesignWare' to design 'compare_swap_desc_6'. (DDB-72)
+Information: Added key list 'DesignWare' to design 'compare_swap_desc_3'. (DDB-72)
+Information: Added key list 'DesignWare' to design 'compare_swap_desc_4'. (DDB-72)
+Information: Added key list 'DesignWare' to design 'compare_swap_desc_7'. (DDB-72)
+Information: Added key list 'DesignWare' to design 'compare_swap_desc_8'. (DDB-72)
+Information: Added key list 'DesignWare' to design 'compare_swap_desc_17'. (DDB-72)
+Information: Added key list 'DesignWare' to design 'compare_swap_desc_18'. (DDB-72)
+Information: Added key list 'DesignWare' to design 'compare_swap_desc_19'. (DDB-72)
+Information: Added key list 'DesignWare' to design 'compare_swap_desc_20'. (DDB-72)
+Information: Added key list 'DesignWare' to design 'compare_swap_asc_37'. (DDB-72)
+Information: Added key list 'DesignWare' to design 'compare_swap_asc_38'. (DDB-72)
+Information: Added key list 'DesignWare' to design 'compare_swap_asc_39'. (DDB-72)
+Information: Added key list 'DesignWare' to design 'compare_swap_asc_40'. (DDB-72)
+Information: Added key list 'DesignWare' to design 'compare_swap_asc_41'. (DDB-72)
+Information: Added key list 'DesignWare' to design 'compare_swap_asc_42'. (DDB-72)
+Information: Added key list 'DesignWare' to design 'compare_swap_asc_43'. (DDB-72)
+Information: Added key list 'DesignWare' to design 'compare_swap_asc_44'. (DDB-72)
+Information: Added key list 'DesignWare' to design 'compare_swap_asc_5'. (DDB-72)
+Information: Added key list 'DesignWare' to design 'compare_swap_asc_6'. (DDB-72)
+Information: Added key list 'DesignWare' to design 'compare_swap_asc_13'. (DDB-72)
+Information: Added key list 'DesignWare' to design 'compare_swap_asc_14'. (DDB-72)
+Information: Added key list 'DesignWare' to design 'compare_swap_asc_7'. (DDB-72)
+Information: Added key list 'DesignWare' to design 'compare_swap_asc_8'. (DDB-72)
+Information: Added key list 'DesignWare' to design 'compare_swap_asc_15'. (DDB-72)
+Information: Added key list 'DesignWare' to design 'compare_swap_asc_16'. (DDB-72)
+Information: Added key list 'DesignWare' to design 'compare_swap_asc_45'. (DDB-72)
+Information: Added key list 'DesignWare' to design 'compare_swap_asc_46'. (DDB-72)
+Information: Added key list 'DesignWare' to design 'compare_swap_asc_47'. (DDB-72)
+Information: Added key list 'DesignWare' to design 'compare_swap_asc_48'. (DDB-72)
+Information: Added key list 'DesignWare' to design 'compare_swap_asc_49'. (DDB-72)
+Information: Added key list 'DesignWare' to design 'compare_swap_asc_50'. (DDB-72)
+Information: Added key list 'DesignWare' to design 'compare_swap_asc_51'. (DDB-72)
+Information: Added key list 'DesignWare' to design 'compare_swap_asc_52'. (DDB-72)
+Information: Added key list 'DesignWare' to design 'compare_swap_asc_53'. (DDB-72)
+Information: Added key list 'DesignWare' to design 'compare_swap_asc_54'. (DDB-72)
+Information: Added key list 'DesignWare' to design 'compare_swap_asc_55'. (DDB-72)
+Information: Added key list 'DesignWare' to design 'compare_swap_asc_56'. (DDB-72)
+Information: Added key list 'DesignWare' to design 'compare_swap_desc_9'. (DDB-72)
+Information: Added key list 'DesignWare' to design 'compare_swap_desc_10'. (DDB-72)
+Information: Added key list 'DesignWare' to design 'compare_swap_desc_21'. (DDB-72)
+Information: Added key list 'DesignWare' to design 'compare_swap_desc_22'. (DDB-72)
+Information: Added key list 'DesignWare' to design 'compare_swap_desc_11'. (DDB-72)
+Information: Added key list 'DesignWare' to design 'compare_swap_desc_12'. (DDB-72)
+Information: Added key list 'DesignWare' to design 'compare_swap_desc_23'. (DDB-72)
+Information: Added key list 'DesignWare' to design 'compare_swap_desc_24'. (DDB-72)
+Information: Added key list 'DesignWare' to design 'compare_swap_desc_37'. (DDB-72)
+Information: Added key list 'DesignWare' to design 'compare_swap_desc_38'. (DDB-72)
+Information: Added key list 'DesignWare' to design 'compare_swap_desc_39'. (DDB-72)
+Information: Added key list 'DesignWare' to design 'compare_swap_desc_40'. (DDB-72)
+Information: Added key list 'DesignWare' to design 'compare_swap_asc_17'. (DDB-72)
+Information: Added key list 'DesignWare' to design 'compare_swap_asc_18'. (DDB-72)
+Information: Added key list 'DesignWare' to design 'compare_swap_asc_57'. (DDB-72)
+Information: Added key list 'DesignWare' to design 'compare_swap_asc_58'. (DDB-72)
+Information: Added key list 'DesignWare' to design 'compare_swap_asc_19'. (DDB-72)
+Information: Added key list 'DesignWare' to design 'compare_swap_asc_20'. (DDB-72)
+Information: Added key list 'DesignWare' to design 'compare_swap_asc_59'. (DDB-72)
+Information: Added key list 'DesignWare' to design 'compare_swap_asc_60'. (DDB-72)
+Information: Added key list 'DesignWare' to design 'compare_swap_asc_73'. (DDB-72)
+Information: Added key list 'DesignWare' to design 'compare_swap_asc_74'. (DDB-72)
+Information: Added key list 'DesignWare' to design 'compare_swap_asc_75'. (DDB-72)
+Information: Added key list 'DesignWare' to design 'compare_swap_asc_76'. (DDB-72)
+Information: Added key list 'DesignWare' to design 'compare_swap_desc_13'. (DDB-72)
+Information: Added key list 'DesignWare' to design 'compare_swap_desc_14'. (DDB-72)
+Information: Added key list 'DesignWare' to design 'compare_swap_desc_25'. (DDB-72)
+Information: Added key list 'DesignWare' to design 'compare_swap_desc_26'. (DDB-72)
+Information: Added key list 'DesignWare' to design 'compare_swap_desc_15'. (DDB-72)
+Information: Added key list 'DesignWare' to design 'compare_swap_desc_16'. (DDB-72)
+Information: Added key list 'DesignWare' to design 'compare_swap_desc_27'. (DDB-72)
+Information: Added key list 'DesignWare' to design 'compare_swap_desc_28'. (DDB-72)
+Information: Added key list 'DesignWare' to design 'compare_swap_desc_41'. (DDB-72)
+Information: Added key list 'DesignWare' to design 'compare_swap_desc_42'. (DDB-72)
+Information: Added key list 'DesignWare' to design 'compare_swap_desc_43'. (DDB-72)
+Information: Added key list 'DesignWare' to design 'compare_swap_desc_44'. (DDB-72)
+Information: Added key list 'DesignWare' to design 'compare_swap_asc_21'. (DDB-72)
+Information: Added key list 'DesignWare' to design 'compare_swap_asc_22'. (DDB-72)
+Information: Added key list 'DesignWare' to design 'compare_swap_asc_61'. (DDB-72)
+Information: Added key list 'DesignWare' to design 'compare_swap_asc_62'. (DDB-72)
+Information: Added key list 'DesignWare' to design 'compare_swap_asc_23'. (DDB-72)
+Information: Added key list 'DesignWare' to design 'compare_swap_asc_24'. (DDB-72)
+Information: Added key list 'DesignWare' to design 'compare_swap_asc_63'. (DDB-72)
+Information: Added key list 'DesignWare' to design 'compare_swap_asc_64'. (DDB-72)
+Information: Added key list 'DesignWare' to design 'compare_swap_asc_77'. (DDB-72)
+Information: Added key list 'DesignWare' to design 'compare_swap_asc_78'. (DDB-72)
+Information: Added key list 'DesignWare' to design 'compare_swap_asc_79'. (DDB-72)
+Information: Added key list 'DesignWare' to design 'compare_swap_asc_80'. (DDB-72)
+Information: Added key list 'DesignWare' to design 'compare_swap_desc_29'. (DDB-72)
+Information: Added key list 'DesignWare' to design 'compare_swap_desc_30'. (DDB-72)
+Information: Added key list 'DesignWare' to design 'compare_swap_desc_45'. (DDB-72)
+Information: Added key list 'DesignWare' to design 'compare_swap_desc_46'. (DDB-72)
+Information: Added key list 'DesignWare' to design 'compare_swap_asc_65'. (DDB-72)
+Information: Added key list 'DesignWare' to design 'compare_swap_asc_66'. (DDB-72)
+Information: Added key list 'DesignWare' to design 'compare_swap_asc_81'. (DDB-72)
+Information: Added key list 'DesignWare' to design 'compare_swap_asc_82'. (DDB-72)
+Information: Added key list 'DesignWare' to design 'compare_swap_desc_31'. (DDB-72)
+Information: Added key list 'DesignWare' to design 'compare_swap_desc_32'. (DDB-72)
+Information: Added key list 'DesignWare' to design 'compare_swap_desc_47'. (DDB-72)
+Information: Added key list 'DesignWare' to design 'compare_swap_desc_48'. (DDB-72)
+Information: Added key list 'DesignWare' to design 'compare_swap_asc_67'. (DDB-72)
+Information: Added key list 'DesignWare' to design 'compare_swap_asc_68'. (DDB-72)
+Information: Added key list 'DesignWare' to design 'compare_swap_asc_83'. (DDB-72)
+Information: Added key list 'DesignWare' to design 'compare_swap_asc_84'. (DDB-72)
+Information: Added key list 'DesignWare' to design 'compare_swap_desc_33'. (DDB-72)
+Information: Added key list 'DesignWare' to design 'compare_swap_desc_34'. (DDB-72)
+Information: Added key list 'DesignWare' to design 'compare_swap_desc_49'. (DDB-72)
+Information: Added key list 'DesignWare' to design 'compare_swap_desc_50'. (DDB-72)
+Information: Added key list 'DesignWare' to design 'compare_swap_asc_69'. (DDB-72)
+Information: Added key list 'DesignWare' to design 'compare_swap_asc_70'. (DDB-72)
+Information: Added key list 'DesignWare' to design 'compare_swap_asc_85'. (DDB-72)
+Information: Added key list 'DesignWare' to design 'compare_swap_asc_86'. (DDB-72)
+Information: Added key list 'DesignWare' to design 'compare_swap_desc_35'. (DDB-72)
+Information: Added key list 'DesignWare' to design 'compare_swap_desc_36'. (DDB-72)
+Information: Added key list 'DesignWare' to design 'compare_swap_desc_51'. (DDB-72)
+Information: Added key list 'DesignWare' to design 'compare_swap_desc_52'. (DDB-72)
+Information: Added key list 'DesignWare' to design 'compare_swap_asc_71'. (DDB-72)
+Information: Added key list 'DesignWare' to design 'compare_swap_asc_72'. (DDB-72)
+Information: Added key list 'DesignWare' to design 'compare_swap_asc_87'. (DDB-72)
+Information: Added key list 'DesignWare' to design 'compare_swap_asc_88'. (DDB-72)
+Information: Added key list 'DesignWare' to design 'compare_swap_desc_53'. (DDB-72)
+Information: Added key list 'DesignWare' to design 'compare_swap_asc_89'. (DDB-72)
+Information: Added key list 'DesignWare' to design 'compare_swap_desc_54'. (DDB-72)
+Information: Added key list 'DesignWare' to design 'compare_swap_asc_90'. (DDB-72)
+Information: Added key list 'DesignWare' to design 'compare_swap_desc_55'. (DDB-72)
+Information: Added key list 'DesignWare' to design 'compare_swap_asc_91'. (DDB-72)
+Information: Added key list 'DesignWare' to design 'compare_swap_desc_56'. (DDB-72)
+Information: Added key list 'DesignWare' to design 'compare_swap_asc_92'. (DDB-72)
+Information: Added key list 'DesignWare' to design 'compare_swap_desc_57'. (DDB-72)
+Information: Added key list 'DesignWare' to design 'compare_swap_asc_93'. (DDB-72)
+Information: Added key list 'DesignWare' to design 'compare_swap_desc_58'. (DDB-72)
+Information: Added key list 'DesignWare' to design 'compare_swap_asc_94'. (DDB-72)
+Information: Added key list 'DesignWare' to design 'compare_swap_desc_59'. (DDB-72)
+Information: Added key list 'DesignWare' to design 'compare_swap_asc_95'. (DDB-72)
+Information: Added key list 'DesignWare' to design 'compare_swap_desc_0'. (DDB-72)
+Information: Added key list 'DesignWare' to design 'compare_swap_asc_0'. (DDB-72)
+Loading db file '/home/SCL_PDK/SCLPDK_V3.0_KIT/scl180/stdcell/fs120/4M1IL/liberty/lib_flow_ff/tsl18fs120_scl_ff.db'
+Information: Command 'do_operand_isolation' is obsolete and is being ignored.  Please refer to the replacement command 'set power_enable_datapath_gating true' instead. (INFO-118)
+
+                                  TOTAL                                      
+   ELAPSED            WORST NEG   SETUP    DESIGN                            
+    TIME      AREA      SLACK     COST    RULE COST         ENDPOINT         
+  --------- --------- --------- --------- --------- -------------------------
+    0:00:16  881791.7      0.00       0.0       0.0                          
+    0:00:16  881791.7      0.00       0.0       0.0                          
+    0:00:16  881791.7      0.00       0.0       0.0                          
+    0:00:16  881791.7      0.00       0.0       0.0                          
+    0:00:16  881791.7      0.00       0.0       0.0                          
+    0:00:21  621884.5      0.00       0.0       0.0                          
+    0:00:21  621812.3      0.00       0.0       0.0                          
+    0:00:23  621812.3      0.00       0.0       0.0                          
+    0:00:23  621812.3      0.00       0.0       0.0                          
+    0:00:23  621812.3      0.00       0.0       0.0                          
+    0:00:23  621812.3      0.00       0.0       0.0                          
+    0:00:23  621812.3      0.00       0.0       0.0                          
+    0:00:23  621812.3      0.00       0.0       0.0                          
+    0:00:23  621812.3      0.00       0.0       0.0                          
+
+
+
+  Beginning Delay Optimization Phase
+  ----------------------------------
+
+                                  TOTAL                                      
+   ELAPSED            WORST NEG   SETUP    DESIGN                            
+    TIME      AREA      SLACK     COST    RULE COST         ENDPOINT         
+  --------- --------- --------- --------- --------- -------------------------
+    0:00:23  621812.3      0.00       0.0       0.0                          
+    0:00:23  621812.3      0.00       0.0       0.0                          
+    0:00:24  621812.3      0.00       0.0       0.0                          
+
+
+  Beginning Area-Recovery Phase  (cleanup)
+  -----------------------------
+
+                                  TOTAL                                      
+   ELAPSED            WORST NEG   SETUP    DESIGN                            
+    TIME      AREA      SLACK     COST    RULE COST         ENDPOINT         
+  --------- --------- --------- --------- --------- -------------------------
+    0:00:24  621812.3      0.00       0.0       0.0                          
+    0:00:24  621812.3      0.00       0.0       0.0                          
+    0:00:25  604162.2      0.00       0.0       0.0                          
+    0:00:26  602572.0      0.00       0.0       0.0                          
+    0:00:27  602518.7      0.00       0.0       0.0                          
+    0:00:27  602471.7      0.00       0.0       0.0                          
+    0:00:27  602452.8      0.00       0.0       0.0                          
+    0:00:27  602434.0      0.00       0.0       0.0                          
+    0:00:28  602412.1      0.00       0.0       0.0                          
+    0:00:28  602393.2      0.00       0.0       0.0                          
+    0:00:28  602361.9      0.00       0.0       0.0                          
+    0:00:28  602343.1      0.00       0.0       0.0                          
+    0:00:28  602321.1      0.00       0.0       0.0                          
+    0:00:28  602302.3      0.00       0.0       0.0                          
+    0:00:29  602283.5      0.00       0.0       0.0                          
+    0:00:29  602261.5      0.00       0.0       0.0                          
+    0:00:29  602242.7      0.00       0.0       0.0                          
+    0:00:29  602211.3      0.00       0.0       0.0                          
+    0:00:29  602211.3      0.00       0.0       0.0                          
+    0:00:29  602198.8      0.00       0.0       0.0                          
+    0:00:29  602198.8      0.00       0.0       0.0                          
+    0:00:29  602198.8      0.00       0.0       0.0                          
+    0:00:29  602198.8      0.00       0.0       0.0                          
+    0:00:29  602198.8      0.00       0.0       0.0                          
+    0:00:29  602198.8      0.00       0.0       0.0                          
+    0:00:30  602198.8      0.00       0.0       0.0                          
+Loading db file '/home/SCL_PDK/SCLPDK_V3.0_KIT/scl180/stdcell/fs120/4M1IL/liberty/lib_flow_ss/tsl18fs120_scl_ss.db'
+
+
+Note: Symbol # after min delay cost means estimated hold TNS across all active scenarios 
+
+
+  Optimization Complete
+  ---------------------
+Warning: Design 'partial_sorter_general' contains 1 high-fanout nets. A fanout number of 1000 will be used for delay calculations involving these nets. (TIM-134)
+     Net 'genblk7.max_tree_level_refined[0].genblk1.process_pair_refined[1].pair_maxBM_inst/sort_unit/recursive_case_bmk.bm_top/recursive_case_bmk.bm_bottom/net347': 5136 load(s), 1 driver(s)
+CPU Load: 4%, Ram Free: 13 GB, Swap Free: 29 GB, Work Disk Free: 19 GB, Tmp Disk Free: 19 GB
+1
+#compile_ultra
+# Generate reports 
+report_timing > ./${REPORTS_DIR}/${DCRM_FINAL_TIMING_REPORT}
+report_power  > ./${REPORTS_DIR}/${DCRM_FINAL_POWER_REPORT}
+report_area   > ./${REPORTS_DIR}/${DCRM_FINAL_AREA_REPORT}
+# Write mapped gate level netlist
+write -format verilog -hierarchy -output ${RESULTS_DIR}/${DCRM_FINAL_VERILOG_OUTPUT_FILE}
+Writing verilog file '/home/user/Documents/OELP_pjts/sorter_pipelined_32_8/sorter_32_8/DC/results/partial_sorter_general.mapped.v'.
+1
+# Write the files needed to load the design in IC compiler II
+write_sdc ./${RESULTS_DIR}/${DCRM_FINAL_SDC_OUTPUT_FILE}
+1
+write_icc2_files -output icc2_files -force
+Information: During the execution of write_icc2_files error messages were issued, please check icc2_files/write_icc2_files.log files. (DCT-228)
+1
+write_sdf ./${RESULTS_DIR}/${DCRM_FINAL_SDF_OUTPUT_FILE}
+Information: Annotated 'cell' delays are assumed to include load delay. (UID-282)
+Information: Writing timing information to file '/home/user/Documents/OELP_pjts/sorter_pipelined_32_8/sorter_32_8/DC/results/partial_sorter_general.mapped.sdf'. (WT-3)
+1
+1

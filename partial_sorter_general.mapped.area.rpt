@@ -1,0 +1,30 @@
+ 
+****************************************
+Report : area
+Design : partial_sorter_general
+Version: U-2022.12-SP5
+Date   : Tue May 20 17:28:22 2025
+****************************************
+
+Library(s) Used:
+
+    tsl18fs120_scl_ss (File: /home/SCL_PDK/SCLPDK_V3.0_KIT/scl180/stdcell/fs120/4M1IL/liberty/lib_flow_ss/tsl18fs120_scl_ss.db)
+
+Number of ports:                      1371656
+Number of nets:                       3119993
+Number of cells:                      1775221
+Number of combinational cells:        1420867
+Number of sequential cells:            340015
+Number of macros/black boxes:               0
+Number of buf/inv:                     730435
+Number of references:                     517
+
+Combinational area:           18260462.029466
+Buf/Inv area:                  5479667.234300
+Noncombinational area:        22393388.107529
+Macro/Black Box area:                0.000000
+Net Interconnect area:         2368108.021633
+
+Total cell area:              40653850.136995
+Total area:                   43021958.158628
+1
